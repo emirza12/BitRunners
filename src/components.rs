@@ -66,4 +66,7 @@ impl Difficulty {
         self.spawn_speed = 1.0;
         self.obstacle_speed = 100.0;
     }
-} 
+}
+
+#[derive(Component)]
+pub struct OnGameScreen; 

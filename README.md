@@ -2,6 +2,7 @@
 + 
 + A fast-paced arcade game built with Rust and Bevy where you navigate through the crypto market, collecting bitcoins while avoiding market hazards.
 + 
++ 
 + ## 🎮 Gameplay
 + 
 + Navigate your player through the crypto market:
@@ -12,6 +13,11 @@
 +   - Bear Market (lose a life)
 + - Only one life - make it count!
 + - Score increases difficulty progressively
++ ## 🎮 Screenshot
++ 
++ ![BitRunners Gameplay](bitrunners1.png)
++ ![BitRunners Gameplay](bitrunners2.png)
++ ![BitRunners Gameplay](bitrunners3.png)
 + 
 + ## 🕹️ Controls
 + 

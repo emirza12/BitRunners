@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use crate::game::GameState;
 use super::GameAssets;
+use crate::components::OnGameScreen;
 
 #[derive(Component)]
 pub struct MenuText;
@@ -170,7 +171,7 @@ pub fn handle_menu(
     mut commands: Commands,
     keyboard: Res<Input<KeyCode>>,
     mut next_state: ResMut<NextState<GameState>>,
-    menu_query: Query<Entity, With<MenuText>>,
+    menu_query: Query<Entity, Or<(With<MenuText>, With<OnGameScreen>)>>,
 ) {
     if keyboard.just_pressed(KeyCode::Space) {
         // Remove all menu elements

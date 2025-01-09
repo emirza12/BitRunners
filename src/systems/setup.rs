@@ -62,7 +62,21 @@ pub fn setup(
         ..default()
     });
 
-    // Modify score text to include best score
+    // Start with menu instead of game
+    next_state.set(GameState::Menu);
+
+    // Initialize high score
+    commands.insert_resource(HighScore(0));
+
+    // Initialize difficulty
+    commands.insert_resource(Difficulty::default());
+}
+
+pub fn setup_player(
+    mut commands: Commands,
+    game_assets: Res<GameAssets>,
+) {
+    // Score display
     commands.spawn((
         TextBundle::from_sections([
             TextSection::new(
@@ -121,22 +135,9 @@ pub fn setup(
             ..default()
         }),
         ScoreText,
+        OnGameScreen,
     ));
 
-    // Start with menu instead of game
-    next_state.set(GameState::Menu);
-
-    // Initialize high score
-    commands.insert_resource(HighScore(0));
-
-    // Initialize difficulty
-    commands.insert_resource(Difficulty::default());
-}
-
-pub fn setup_player(
-    mut commands: Commands,
-    game_assets: Res<GameAssets>,
-) {
     commands.spawn((
         SpriteBundle {
             texture: game_assets.player_sprite.clone(),
