@@ -65,7 +65,3 @@ Navigate your player through the crypto market:
  - [Rust](https://www.rust-lang.org/) - Programming language
  - [Bevy](https://bevyengine.org/) - Game engine
  - [rand](https://crates.io/crates/rand) - RNG
- 
- ## 📝 License
- 
- This project is open source and available under the MIT License. 
