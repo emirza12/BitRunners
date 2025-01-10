@@ -14,7 +14,7 @@ pub fn spawn_obstacles(
 
     if spawn_timer.obstacle_timer.just_finished() {
         let mut rng = rand::thread_rng();
-        let x = rng.gen_range(-300.0..300.0);
+        let x = rng.gen_range(-350.0..350.0);
         
         let bear_chance = (difficulty.level as f32 * 0.1).min(0.6);
         let random = rng.gen_range(0.0..1.0);
