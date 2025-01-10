@@ -48,7 +48,7 @@ Navigate your player through the crypto market:
  
  2. Run:
  ```
- cargo run --release
+ cargo run
  ```
  
  ## 🎨 Assets Required
