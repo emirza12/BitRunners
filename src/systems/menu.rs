@@ -145,7 +145,7 @@ pub fn setup_menu(mut commands: Commands, game_assets: Res<GameAssets>) {
             ));
         });
 
-        // Instructions de déplacement
+        // Moving
         parent.spawn(TextBundle::from_section(
             "\nUse <- -> arrows to move\n\n",
             TextStyle {

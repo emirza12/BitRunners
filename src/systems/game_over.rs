@@ -2,16 +2,20 @@ use bevy::prelude::*;
 use crate::components::*;
 use crate::game::GameState;
 
+// Set up the game over screen
 pub fn setup_game_over(
     mut commands: Commands,
     player_query: Query<&Player>,
     mut high_score: ResMut<HighScore>,
 ) {
     let player = player_query.single();
+
+    // Update high score if needed
     if player.score > high_score.0 {
         high_score.0 = player.score;
     }
 
+    // Spawn game over text
     commands.spawn((
         TextBundle::from_sections([
             TextSection::new(
@@ -34,6 +38,7 @@ pub fn setup_game_over(
     ));
 }
 
+// Handle game over and restart when SPACE is pressed
 pub fn handle_game_over(
     mut commands: Commands,
     keyboard: Res<Input<KeyCode>>,
@@ -46,12 +51,11 @@ pub fn handle_game_over(
     mut spawn_timer: ResMut<SpawnTimer>,
 ) {
     if keyboard.just_pressed(KeyCode::Space) {
-        // Nettoyer l'écran
+        // Clean up the screen and entities
         for entity in game_over_text.iter() {
             commands.entity(entity).despawn();
         }
 
-        // Nettoyer les entités
         for entity in player_query.iter() {
             commands.entity(entity).despawn();
         }
@@ -62,14 +66,12 @@ pub fn handle_game_over(
             commands.entity(entity).despawn();
         }
 
-        // Réinitialiser la difficulté
+        // Reset difficulty and timers
         difficulty.reset();
-        
-        // Réinitialiser les timers
         spawn_timer.bitcoin_timer.set_duration(std::time::Duration::from_secs_f32(1.5));
         spawn_timer.obstacle_timer.set_duration(std::time::Duration::from_secs_f32(2.0));
 
-        // Redémarrer le jeu
+        // Restart the game
         next_state.set(GameState::Playing);
     }
-} 
+}
