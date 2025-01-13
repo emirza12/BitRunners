@@ -47,22 +47,33 @@ pub fn handle_game_over(
     player_query: Query<Entity, With<Player>>,
     obstacles: Query<Entity, With<Obstacle>>,
     bitcoins: Query<Entity, With<Bitcoin>>,
+    score_text: Query<Entity, With<ScoreText>>,
     mut difficulty: ResMut<Difficulty>,
     mut spawn_timer: ResMut<SpawnTimer>,
 ) {
     if keyboard.just_pressed(KeyCode::Space) {
-        // Clean up the screen and entities
+        // Clean up game over text
         for entity in game_over_text.iter() {
             commands.entity(entity).despawn();
         }
 
+        // Clean up player
         for entity in player_query.iter() {
             commands.entity(entity).despawn();
         }
+
+        // Clean up obstacles
         for entity in obstacles.iter() {
             commands.entity(entity).despawn();
         }
+
+        // Clean up bitcoins
         for entity in bitcoins.iter() {
+            commands.entity(entity).despawn();
+        }
+
+        // Clean up score text
+        for entity in score_text.iter() {
             commands.entity(entity).despawn();
         }
 
@@ -71,7 +82,7 @@ pub fn handle_game_over(
         spawn_timer.bitcoin_timer.set_duration(std::time::Duration::from_secs_f32(1.5));
         spawn_timer.obstacle_timer.set_duration(std::time::Duration::from_secs_f32(2.0));
 
-        // Restart the game
+        // Restart game
         next_state.set(GameState::Playing);
     }
 }
